@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Pearl Bar · The Charm Bar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Quicksand:wght@500;600;700;800&family=Shrikhand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Audio Controls -->
+  <div class="audio-bubble" id="audio-bubble">
+    <button id="btn-music-toggle" class="audio-pill-btn" title="Toggle Tangled Music Box">
+      <span class="icon">🎵</span>
+      <span class="text">Music Box: <strong id="music-label">Off</strong></span>
+    </button>
+  </div>
+
+  <!-- Background Animated Lanterns & Stardust (Rapunzel Fairytale Theme) -->
+  <canvas id="lanterns-canvas"></canvas>
+
+  <!-- The Luxury Desktop Scene -->
+  <div class="desk-surface">
+    <div class="charm-app-wrapper">
+      
+      <!-- Top Header Bar -->
+      <header class="app-header">
+        <div class="header-left">
+          <div class="brand-logo">
+            <span class="brand-title">THE PEARL BAR</span>
+            <span class="brand-sub">THE CHARM BAR</span>
+          </div>
+          <div class="brand-tagline">Little things. Entirely you. ✨</div>
+        </div>
+
+        <div class="header-right">
+          <div class="currency-switch">
+            <button class="curr-btn active" data-curr="USD">$ USD</button>
+            <button class="curr-btn" data-curr="PKR">Rs PKR</button>
+          </div>
+          <button class="how-it-works-btn" id="btn-how-works">How it works <span>?</span></button>
+          <div class="header-cart-pill" id="header-cart-pill">
+            <span class="cart-label" id="cart-item-label">Your bracelet</span>
+            <span class="cart-price" id="top-total">$0</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main 3-Column Desk Layout -->
+      <main class="desk-main-content">
+
+        <!-- 1. DIVIDED VELVET TRAY (Left Column) -->
+        <section class="panel tray-panel" aria-label="Charm Selection Tray">
+          <div class="tray-title-bar">
+            <h2>Pick your little things.</h2>
+            <div class="tray-tabs">
+              <button class="tray-tab active" data-tab="all">All</button>
+              <button class="tray-tab" data-tab="pearls">Pearls 🦪</button>
+              <button class="tray-tab" data-tab="mini">Choker Pearls 🤍</button>
+              <button class="tray-tab" data-tab="charms">Charms 🍒</button>
+              <button class="tray-tab" data-tab="rings">Rings 💍</button>
+              <button class="tray-tab" data-tab="earrings">Earrings ✨</button>
+              <button class="tray-tab" data-tab="tangled">Tangled ☀️</button>
+            </div>
+          </div>
+
+          <!-- Divided 12-Slot Wooden/Velvet Box -->
+          <div class="tray-wooden-frame">
+            <div class="tray-compartments-grid" id="tray-grid">
+              <!-- Populated dynamically with 3D Glossy Charms, Shining Pearls & Rings -->
+            </div>
+          </div>
+
+          <div class="tray-helper-hint">
+            <span>✨ Tap any piece to hook it onto your jewelry in the box!</span>
+          </div>
+        </section>
+
+        <!-- 2. 3D ENAMEL & VELVET JEWELRY BOX (Center Column) -->
+        <section class="panel box-panel" aria-label="Interactive 3D Jewelry Box Stage">
+          
+          <!-- Box Top Controls & Header -->
+          <div class="box-controls-bar">
+            <!-- 4 Jewelry Types: Bracelet, Necklace, Rings, Earrings -->
+            <div class="type-selector">
+              <button class="type-btn active" data-type="bracelet">📿 Bracelet</button>
+              <button class="type-btn" data-type="necklace">👑 Necklace</button>
+              <button class="type-btn" data-type="rings">💍 Rings</button>
+              <button class="type-btn" data-type="earrings">✨ Earrings</button>
+            </div>
+
+            <!-- Chain & Hardware Metal Switcher -->
+            <div class="metal-selector">
+              <button class="metal-pill-btn active" data-metal="silver" title="Sterling Silver">
+                <span class="dot silver-dot"></span> Silver
+              </button>
+              <button class="metal-pill-btn" data-metal="gold" title="18K Corona Gold">
+                <span class="dot gold-dot"></span> Gold
+              </button>
+            </div>
+          </div>
+
+          <!-- The Physical 3D Enamel Jewelry Box -->
+          <div class="jewelry-box-container" id="box-container">
+            
+            <div class="enamel-box-wrapper" id="enamel-box">
+              
+              <!-- Upright Box Lid (Standing in 3D Perspective) -->
+              <div class="box-lid" id="box-lid">
+                <div class="box-lid-interior">
+                  <div class="lid-satin-cushion">
+                    <div class="lid-brand-emboss">
+                      <div class="lid-crown-icon">👑</div>
+                      <div class="lid-logo">THE PEARL BAR</div>
+                      <div class="lid-sub">THE CHARM BAR</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Base Jewelry Box with Satin Bed & Gold Zipper Trim -->
+              <div class="box-base" id="box-base">
+                <div class="box-zipper-track" title="18K Gold Zipper Trim"></div>
+                
+                <!-- Sizing Pills on the Box Rim -->
+                <div class="box-rim-header">
+                  <span class="chain-spec-title" id="chain-spec-title">Silver oval-link bracelet</span>
+                  <div class="sizes-pills" id="sizes-pills">
+                    <button class="size-btn">16 cm</button>
+                    <button class="size-btn active">18 cm</button>
+                    <button class="size-btn">20 cm</button>
+                  </div>
+                </div>
+
+                <div class="bust-row hide" id="bust-row">
+                  <span>Velvet bust:</span>
+                  <button class="bust-dot active" data-bust="ivory" style="background:#f0e2cc" title="Ivory"></button>
+                  <button class="bust-dot" data-bust="blush" style="background:#f3c9d4" title="Blush"></button>
+                  <button class="bust-dot" data-bust="lavender" style="background:#cdb3f2" title="Lavender"></button>
+                  <button class="bust-dot" data-bust="midnight" style="background:#3a2f68" title="Midnight"></button>
+                </div>
+
+                <!-- Satin Cushion Interior Bed -->
+                <div class="satin-bed" id="satin-bed">
+                  <div class="satin-glow"></div>
+                  
+                  <!-- Stage 1 & 2: SVG Stage for Bracelet and Necklace -->
+                  <svg id="stage-svg" viewBox="0 0 540 380" preserveAspectRatio="xMidYMid meet">
+                    <!-- Populated via JavaScript -->
+                  </svg>
+
+                  <!-- Stage 3: Velvet Ring Cushion (for Rings Mode) -->
+                  <div class="ring-roll-stage" id="ring-stage" style="display: none;">
+                    <!-- 4 Horizontal Velvet Ring Slots populated via JS -->
+                  </div>
+
+                  <!-- Stage 4: Velvet Earring Cards (for Earrings Mode) -->
+                  <div class="earrings-stage" id="earrings-stage" style="display: none;">
+                    <!-- Left & Right Earring Stands populated via JS -->
+                  </div>
+
+                  <!-- Engraved Charm Tag Dangling on Chain -->
+                  <div class="engraved-heart-charm" id="chain-engraving-tag" title="Click to edit engraving">
+                    <span class="heart-text" id="heart-text-preview">Corona</span>
+                  </div>
+                </div>
+
+                <!-- Front Gold Lock Clasp -->
+                <div class="box-lock-clasp">
+                  <div class="lock-hole"></div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Floating Status Bubble under Box -->
+            <div class="floating-status-pill" id="status-pill">
+              <span id="status-text">Pick genuine pearls & charms from the tray to design your piece ✨</span>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- 3. RETRO PASTEL PINK CASH REGISTER (Right Column) -->
+        <section class="panel register-panel" aria-label="Cash Register & Checkout">
+          
+          <div class="vintage-register" id="vintage-register">
+            <!-- Scalloped Rococo Top Crest -->
+            <div class="reg-top-crest">
+              <svg viewBox="0 0 160 30" class="crest-svg">
+                <path d="M 10 25 Q 30 5 50 25 Q 80 0 110 25 Q 130 5 150 25 Z" fill="#d4af37" stroke="#aa771c" stroke-width="1.5"/>
+                <circle cx="80" cy="12" r="5" fill="#fdf6ba"/>
+              </svg>
+            </div>
+
+            <!-- Register Housing Body -->
+            <div class="reg-body">
+              
+              <!-- Glowing Digital LED Screen -->
+              <div class="reg-screen">
+                <div class="reg-screen-inner">
+                  <span class="reg-screen-count" id="reg-count">0 items</span>
+                  <strong class="reg-screen-price" id="reg-total">$0</strong>
+                </div>
+              </div>
+
+              <!-- Push Buttons Grid (Authentic Round Keys) -->
+              <div class="reg-keypad">
+                <button class="reg-key" data-sound="1"><span>7</span></button>
+                <button class="reg-key" data-sound="2"><span>8</span></button>
+                <button class="reg-key" data-sound="3"><span>9</span></button>
+                <button class="reg-key" data-sound="4"><span>4</span></button>
+                <button class="reg-key" data-sound="5"><span>5</span></button>
+                <button class="reg-key" data-sound="6"><span>6</span></button>
+                <button class="reg-key" data-sound="7"><span>1</span></button>
+                <button class="reg-key" data-sound="8"><span>2</span></button>
+                <button class="reg-key" data-sound="9"><span>3</span></button>
+              </div>
+
+              <!-- Prominent "BOX IT UP" Pill Button -->
+              <button class="reg-box-it-btn" id="btn-box-it">
+                <span class="btn-stars">✨</span>
+                <span class="btn-caption">BOX IT UP</span>
+                <span class="btn-stars">🎁</span>
+              </button>
+
+              <!-- Sliding Bottom Drawer -->
+              <div class="reg-drawer" id="reg-drawer">
+                <div class="reg-drawer-trim"></div>
+                <div class="drawer-knob"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Personalize Engraving Card -->
+          <div class="engraving-card">
+            <div class="engraving-card-header">
+              <div class="engrave-icon">✍️</div>
+              <div class="engrave-meta">
+                <strong>Engrave a little love</strong>
+                <small>Personalise the heart +<span id="engrave-fee">$5</span></small>
+              </div>
+            </div>
+            
+            <div class="engrave-input-group">
+              <input type="text" id="engrave-input" maxlength="12" placeholder="Initial or Name..." value="Corona">
+              <button id="btn-clear-tray" class="clear-btn" title="Reset all pieces">Reset</button>
+            </div>
+          </div>
+
+          <!-- Direct Order Buttons -->
+          <div class="register-bottom-actions">
+            <button id="btn-surprise" class="btn-surprise">🎲 Surprise me</button>
+            <div class="mini-actions"><button id="btn-undo" class="btn-surprise btn-soft">↩ Undo</button><button id="btn-save-pic" class="btn-surprise btn-soft">📸 Save picture</button></div>
+            <button id="btn-whatsapp-direct" class="btn-wa">
+              <span>💬 Order on WhatsApp</span>
+            </button>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- STYLE GALLERY: 5 styles each for necklace, bracelet, earrings -->
+      <section class="style-gallery" id="style-gallery" aria-label="Choose a style"></section>
+
+    </div>
+  </div>
+
+  <!-- GIFT STUDIO -->
+  <div class="gift-overlay" id="gift-overlay" role="dialog" aria-hidden="true">
+    <div class="gift-modal-card">
+      <button class="modal-close-x" id="btn-close-modal">&times;</button>
+      <div id="pack-setup">
+        <h3 class="modal-title">Let’s wrap your gift 🎁</h3>
+        <p class="modal-subtitle">Choose a wrapping style and write a little card.</p>
+        <div class="wrap-choices" id="wrap-choices">
+          <button class="wrap-opt active" data-wrap="purple"><i style="background:linear-gradient(135deg,#a874ee,#3f1a82)"></i>Royal Lantern</button>
+          <button class="wrap-opt" data-wrap="rose"><i style="background:linear-gradient(135deg,#f48fb1,#880e4f)"></i>Blush Rose</button>
+          <button class="wrap-opt" data-wrap="night"><i style="background:linear-gradient(135deg,#546e7a,#0d1b24)"></i>Midnight Gold</button>
+        </div>
+        <div class="gift-fields">
+          <input id="gift-to" maxlength="16" placeholder="To (name)">
+          <input id="gift-from" maxlength="16" placeholder="From (your name)">
+          <input id="gift-msg" maxlength="44" placeholder="Your message… e.g. You are my sunshine">
+        </div>
+        <button class="modal-btn modal-btn-wa" id="btn-start-pack" style="width:100%">Start packing ✨</button>
+      </div>
+      <div id="pack-show" class="hide">
+        <div id="pack-stage" class="pack-stage"></div>
+        <p id="pk-status" class="pk-status"></p>
+        <div id="pack-end" class="hide">
+          <div class="pack-summary" id="pack-summary"></div>
+          <div class="modal-actions-row">
+            <button id="btn-confirm-whatsapp" class="modal-btn modal-btn-wa">💬 Order on WhatsApp</button>
+            <button id="btn-wa-gift" class="modal-btn modal-btn-wa" style="background:#128c7e">💌 Send the gift card on WhatsApp</button>
+            <button id="btn-make-another" class="modal-btn modal-btn-secondary">✨ Design another piece</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS MODAL -->
+  <div class="info-overlay" id="info-overlay" role="dialog" aria-hidden="true">
+    <div class="info-modal-card">
+      <button class="modal-close-x" id="btn-close-info">&times;</button>
+      <h3>How The Charm Bar Works 💖</h3>
+      <ol class="how-steps-list">
+        <li>
+          <strong>1. Choose your piece</strong>
+          <p>Switch between Bracelet, Necklace, Rings, or Earrings using the top buttons above the velvet box.</p>
+        </li>
+        <li>
+          <strong>2. Pick genuine pearls & charms</strong>
+          <p>Browse glowing South Sea pearls, Akoya drops, Tangled charms, and heirloom rings in the tray. Tap any piece to place it.</p>
+        </li>
+        <li>
+          <strong>3. Select metal & size</strong>
+          <p>Switch between 18K Corona Gold or Sterling Silver, and select your preferred size (16cm, 18cm, 20cm).</p>
+        </li>
+        <li>
+          <strong>4. Box it up!</strong>
+          <p>Click "BOX IT UP" on the pink cash register to open the Gift Studio: choose a wrap, write a card, and watch your jewelry get packed and sealed!</p>
+        </li>
+      </ol>
+      <button class="modal-btn modal-btn-secondary" id="btn-got-it">Got it, let's design!</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
